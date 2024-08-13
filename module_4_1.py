@@ -1,8 +1,5 @@
-import fake_math
-import true_math
-
-fake_divide = fake_math.divide
-true_divide = true_math.divide
+from fake_math import divide as fake_divide
+from true_math import divide as true_divide
 
 result1 = fake_divide(69, 3)
 result2 = fake_divide(3, 0)
