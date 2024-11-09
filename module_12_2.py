@@ -54,21 +54,24 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(self):
-        print([f"{key}: {value}" for key, value in self.all_results.items()])
+        print([f"{key}: {value}" for key, value in self.all_results.items()], len(self.all_results))
 
     def testRun1(self):
         tournament = Tournament(90, self.Usain, self.Nick)
         self.all_results = tournament.start()
+        self.tearDownClass()
         self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
 
     def testRun2(self):
         tournament = Tournament(90, self.Andrew, self.Nick)
         self.all_results = tournament.start()
+        self.tearDownClass()
         self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
 
     def testRun3(self):
         tournament = Tournament(90, self.Usain, self.Andrew, self.Nick)
         self.all_results = tournament.start()
+        self.tearDownClass()
         self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
 
 # if __name__ == '__main__':
