@@ -1,4 +1,5 @@
 import unittest
+from pprint import pprint
 
 
 class Runner:
@@ -44,8 +45,8 @@ class Tournament:
 
 class TournamentTest(unittest.TestCase):
     @classmethod
-    def setUpClass(self):
-        self.all_results = {}
+    def setUpClass(cls):
+        cls.all_results = {}
 
     def setUp(self):
         self.Usain = Runner('Усэйн', 10)
@@ -53,26 +54,28 @@ class TournamentTest(unittest.TestCase):
         self.Nick = Runner('Ник', 3)
 
     @classmethod
-    def tearDownClass(self):
-        print([f"{key}: {value}" for key, value in self.all_results.items()], len(self.all_results))
+    def tearDownClass(cls):
+        for i in cls.all_results.items():
+            print(i[1])
 
     def testRun1(self):
-        tournament = Tournament(90, self.Usain, self.Nick)
-        self.all_results = tournament.start()
-        self.tearDownClass()
-        self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
+        self.tournament = Tournament(90, self.Usain, self.Nick)
+        self.asserts()
 
     def testRun2(self):
-        tournament = Tournament(90, self.Andrew, self.Nick)
-        self.all_results = tournament.start()
-        self.tearDownClass()
-        self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
+        self.tournament = Tournament(90, self.Andrew, self.Nick)
+        self.asserts()
 
     def testRun3(self):
-        tournament = Tournament(90, self.Usain, self.Andrew, self.Nick)
-        self.all_results = tournament.start()
-        self.tearDownClass()
-        self.assertTrue(self.all_results[len(self.all_results)] == "Ник")
+        self.tournament = Tournament(90, self.Usain, self.Andrew, self.Nick)
+        self.asserts()
+
+    def asserts(self):
+        self.results = self.tournament.start()
+        self.assertTrue(self.results[len(self.results)] == "Ник")
+        d = {k: v.name for k, v in self.results.items()}
+        # print(d)
+        self.all_results[len(self.all_results) + 1] = d
 
 # if __name__ == '__main__':
 #     unittest.main()
