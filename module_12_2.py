@@ -1,5 +1,4 @@
 import unittest
-from pprint import pprint
 
 
 class Runner:
@@ -44,6 +43,7 @@ class Tournament:
 
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
@@ -58,14 +58,17 @@ class TournamentTest(unittest.TestCase):
         for i in cls.all_results.items():
             print(i[1])
 
+    @unittest.skipIf(is_frozen, "test is frozen")
     def testRun1(self):
         self.tournament = Tournament(90, self.Usain, self.Nick)
         self.asserts()
 
+    @unittest.skipIf(is_frozen, "test is frozen")
     def testRun2(self):
         self.tournament = Tournament(90, self.Andrew, self.Nick)
         self.asserts()
 
+    @unittest.skipIf(is_frozen, "test is frozen")
     def testRun3(self):
         self.tournament = Tournament(90, self.Usain, self.Andrew, self.Nick)
         self.asserts()
