@@ -3,8 +3,6 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from keyboard_14_4 import *
 from _storage import api
-from admin_14_4 import *
-from db_14_4 import *
 from crud_functions import *
 
 bot = Bot(token=api)
